@@ -1,12 +1,34 @@
+const express= require("express");
+const bodyParser = require("body-parser");
+
+const todoRoutes = require("./routes/todos");
+
+const app = express();
+
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    console.log("Some middleware...");
+    next();
+})
+
+app.use(todoRoutes);
+
+app.listen(3000);
+
+
+// -----------------------------------------------------------//
+
+
 // # raw Node.Js, without Express
 
-const http = require("http");
+// const http = require("http");
 
-const server = http.createServer((req, res) => {
-    res.end("Hello world (from Node!)");
-});
+// const server = http.createServer((req, res) => {
+//     res.end("Hello world (from Node!)");
+// });
 
-server.listen(3000);
+// server.listen(3000);
 
 
 // -----------------------------------------------------------//
